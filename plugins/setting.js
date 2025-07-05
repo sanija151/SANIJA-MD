@@ -1,1 +1,184 @@
-function _0x159a(){const _0x342f57=['*\x0a│\x20🎙️\x20*➤\x20Auto\x20Voice*:\x20','4687150IPCACB','PREFIX','\x0a│\x20💬\x20*➤\x20Auto\x20Reply*:\x20','\x0a│\x20🖼️\x20*➤\x20Auto\x20Sticker*:\x20','../command','30gxDARN','\x20Settings*\x20⚙️───╮\x0a│\x0a│\x20🤖\x20*➤\x20Bot\x20Name*:\x20*','3194095rHysvL','ANTI_BAD','OWNER_REACT','.settings','../config','log','╭───⚙️\x20*','38973yaEoRU','true','913UNZTrt','\x0a│\x20🟢\x20*➤\x20Auto\x20Read\x20Status*:\x20','\x0a│\x20😀\x20*➤\x20Auto\x20React*:\x20','env','\x0a│\x20⌨️\x20*➤\x20Prefix*:\x20*[\x20','sendMessage','43589pKQYaS','\x0a│\x20👑\x20*➤\x20Owner\x20React*:\x20','Get\x20bot\x27s\x20settings\x20list.','261VRhFPX','HEART_REACT','56qavyYZ','833tdEKlW','*\x0a│\x20⚙️\x20*➤\x20Mode*:\x20*','784HPWPqD','ALIVE_MSG','AUTO_REPLY','\x20]*\x0a│\x20🎥\x20*➤\x20Fake\x20Recording*:\x20','\x0a│\x20✉️\x20*➤\x20Alive\x20Message*:\x20*','MODE','ALIVE_IMG','settings','4OJsIkc','setting','2484YbTObZ','BOT_NAME','🎛️','AUTO_VOICE'];_0x159a=function(){return _0x342f57;};return _0x159a();}const _0x410948=_0x21f9;(function(_0x47e195,_0x271ce8){const _0x56edd9=_0x21f9,_0x5dbf9e=_0x47e195();while(!![]){try{const _0x370f2a=parseInt(_0x56edd9(0xe4))/0x1*(parseInt(_0x56edd9(0xe6))/0x2)+-parseInt(_0x56edd9(0xd6))/0x3*(-parseInt(_0x56edd9(0xc1))/0x4)+parseInt(_0x56edd9(0xcf))/0x5+-parseInt(_0x56edd9(0xcd))/0x6*(parseInt(_0x56edd9(0xde))/0x7)+parseInt(_0x56edd9(0xe3))/0x8*(parseInt(_0x56edd9(0xe1))/0x9)+-parseInt(_0x56edd9(0xc8))/0xa+parseInt(_0x56edd9(0xd8))/0xb*(-parseInt(_0x56edd9(0xc3))/0xc);if(_0x370f2a===_0x271ce8)break;else _0x5dbf9e['push'](_0x5dbf9e['shift']());}catch(_0x327e0b){_0x5dbf9e['push'](_0x5dbf9e['shift']());}}}(_0x159a,0x70ace));const {cmd}=require(_0x410948(0xcc)),config=require(_0x410948(0xd3));function _0x21f9(_0x22cc62,_0x1b098d){const _0x159a14=_0x159a();return _0x21f9=function(_0x21f9d9,_0x680f44){_0x21f9d9=_0x21f9d9-0xbc;let _0xce1b42=_0x159a14[_0x21f9d9];return _0xce1b42;},_0x21f9(_0x22cc62,_0x1b098d);}cmd({'pattern':_0x410948(0xc0),'react':_0x410948(0xc5),'alias':[_0x410948(0xc2),_0x410948(0xdb)],'desc':_0x410948(0xe0),'category':'main','use':_0x410948(0xd2),'filename':__filename},async(_0x195239,_0x9fb766,_0x1256cd,{from:_0x34e17f,quoted:_0x575342,body:_0x4a78c2,isCmd:_0x583c98,args:_0x30d394,q:_0x478a5d,isGroup:_0x5b8a38,sender:_0x12ca05,senderNumber:_0x27b710,botNumber2:_0x5ab3e5,botNumber:_0x145820,pushname:_0x3de297,isMe:_0x1af97b,isOwner:_0x50ffad,groupMetadata:_0x850160,groupName:_0x2d1718,participants:_0x4f97db,groupAdmins:_0x49abcb,isBotAdmins:_0x57f9b9,isAdmins:_0x5b5b6a,reply:_0x54ff98})=>{const _0x176990=_0x410948;try{const _0x1b9fe7=_0x298597=>{const _0x19bae9=_0x21f9;return _0x298597===!![]||_0x298597===_0x19bae9(0xd7)||_0x298597===0x1?'✅':'❌';};let _0x246c15=_0x176990(0xd5)+config[_0x176990(0xc4)]+_0x176990(0xce)+config[_0x176990(0xc4)]+_0x176990(0xe5)+config[_0x176990(0xbe)]+_0x176990(0xc7)+_0x1b9fe7(config[_0x176990(0xc6)])+_0x176990(0xcb)+_0x1b9fe7(config['AUTO_STICKER'])+_0x176990(0xca)+_0x1b9fe7(config[_0x176990(0xe8)])+_0x176990(0xbd)+config[_0x176990(0xe7)]+'*\x0a│\x20🔗\x20*➤\x20Anti\x20Link*:\x20'+_0x1b9fe7(config['ANTI_LINK'])+'\x0a│\x20🚫\x20*➤\x20Anti\x20Bad*:\x20'+_0x1b9fe7(config[_0x176990(0xd0)])+_0x176990(0xdc)+config[_0x176990(0xc9)]+_0x176990(0xbc)+_0x1b9fe7(config['FAKE_RECORDING'])+_0x176990(0xda)+_0x1b9fe7(config['AUTO_REACT'])+'\x0a│\x20❤️\x20*➤\x20Heart\x20React*:\x20'+_0x1b9fe7(config[_0x176990(0xe2)])+_0x176990(0xdf)+_0x1b9fe7(config[_0x176990(0xd1)])+_0x176990(0xd9)+_0x1b9fe7(config['AUTO_READ_STATUS'])+'\x0a│\x20\x0a╰──────────────────────────╯\x0a\x0a*🌟DEVELOPED\x20BY\x20Sanija\x20Nimtharu🌟*\x0a';await _0x195239[_0x176990(0xdd)](_0x34e17f,{'image':{'url':config[_0x176990(0xbf)]},'caption':_0x246c15},{'quoted':_0x9fb766});}catch(_0x267a05){console[_0x176990(0xd4)](_0x267a05),_0x54ff98(''+_0x267a05);}});
+const config = require('../config')
+const {cmd , commands} = require('../command')
+const os = require("os")
+
+cmd({
+    pattern: "settings",
+    alias: ["setting"],
+    desc: "settings the bot",
+    category: "owner",
+    react: "⚙",
+    filename: __filename
+
+
+},
+async (conn, mek, m, { from, isOwner, quoted, reply }) => {
+    if (!isOwner) return reply("❌ You are not the owner!");
+    try {
+        let desc = `*【ＳＡＮＩＪＡ－ＭＤ　ＳＥＴＴＩＮＧＳ　．．．．．．．．．．．⚙️】*
+
+
+╭══════════════════════○
+┣━ (01) *【ＷＯＲＫ　ＭＯＤＥ】....🧠👁️*
+> 1.1  Public Work__🫂
+> 1.2  Private Work__❗
+> 1.3  Group Only__👥
+> 1.4  Inbox Only__👤
+╭══════════════════════○
+┣━ (02) *【ＡＵＴＯ　ＶＩＯＣＥ】.....🧠👁️*
+> 2.1 Auto Voice __true 🔛
+> 2.2 Auto Voice_ false 📴
+╭══════════════════════○
+┣━ (03) *【ＡＵＴＯ　ＳＴＡＴＵＳ　ＳＥＥＮ】.....🧠👁️*
+> 3.1 Auto Read Status __true 🔛
+> 3.2 Auto Read Status_ false 📴
+╭══════════════════════○
+┣━ (04) *【ＡＵＴＯ　ＳＴＩＣＫＥＲ】....🧠👁️*
+> 4.1 Auto sticker __true 🔛
+> 4.2 Auto sticker_ false 📴
+╭══════════════════════○
+┣━ (05) *【ＡＵＴＯ　ＲＥＲＰＬＹ】.....🧠👁️*
+> 5.1 Auto reply __true 🔛
+> 5.2 Auto reply_ false 📴
+╭══════════════════════○
+┣━ (06) *【ＢＯＴ　ＯＮＬＩＮＥ／ＯＦＬＩＮＥ】....🧠👁️*
+> 6.1 Online __true 🔛
+> 6.2 Online_ false 📴
+╭══════════════════════○
+┣━ (07) *【ＭＳＧ　ＲＥＡＤ】....🧠👁️*
+> 7.1 Read Msg __true 🔛
+> 7.2 Read Msg_ false 📴
+╭══════════════════════○
+┣━  (08) *【ＭＳＧ　ＲＥＡＣＴ】....🧠👁️*
+> 8.1 Auto React __true 🔛
+> 8.2 Auto React _ false 📴
+╭══════════════════════○
+┣━ (09) *【ＡＮＴＩ　ＬＩＮＫ】.....🧠👁️*
+> 9.1 Anti Link__true 🔛
+> 9.2 Anti Link _ false 📴
+> 9.3 Anti Link + Remove ⛔
+╭══════════════════════○
+┣━ (10) *【ＡＵＴＯ　ＳＴＡＴＵＳ　ＲＥＡＣＴ　＆　ＲＥＰＬＹ】.....🧠👁️*
+> 10. 1 Status React__true 🔛
+> 10. 2 Status React _ false 📴
+> 10. 3 Status Reply__true 🔛
+> 10. 4 Status Reply _ false 📴
+╭══════════════════════○
+
+𝐀ᴜᴛᴏ 𝐒ᴛᴀᴛᴜꜱ 𝐑ᴘʟ එක වෙනස් කරන්න මෙහෙම කරන්න.....👇
+ 
+.update 𝐀ᴜᴛᴏ_𝐒ᴛᴀᴛᴜꜱ_𝐌ꜱɢ: ඔයාට ඕන 𝐌ᴀɢ එක දාන්න......¿
+╰══════════════════════○
+
+
+🔢 【ＲＥＰＬＹ　ＢＥＬＯＷ　ＴＨＩＳ　ＮＵＭＢＥＲＳ　ＴＯ　ＣＨＮＡＧＥ　ＳＡＮＩＪＡ　ＭＤ　ＳＥＴＴＩＮＧＳ ．．．．．．．．．❍】
+
+
+> 【ＰＯＷＥＲＥＤ　ＢＹ　ＳＡＮＩＪＡ－ＭＤ ......👁️❗】`;
+
+        const vv = await conn.sendMessage(from, { image: { url: "https://files.catbox.moe/d2d02k.png"}, caption: desc }, { quoted: mek });
+
+        conn.ev.on('messages.upsert', async (msgUpdate) => {
+            const msg = msgUpdate.messages[0];
+            if (!msg.message || !msg.message.extendedTextMessage) return;
+
+            const selectedOption = msg.message.extendedTextMessage.text.trim();
+
+            if (msg.message.extendedTextMessage.contextInfo && msg.message.extendedTextMessage.contextInfo.stanzaId === vv.key.id) {
+                switch (selectedOption) {
+                    case '1.1':
+                        reply(".update MODE:public" );
+                        break;
+                    case '1.2':               
+                        reply(".update MODE:private");
+                        break;
+                    case '1.3':               
+                          reply(".update MODE:group");
+                      break;
+                    case '1.4':     
+                        reply(".update MODE:inbox");
+                      break;
+                    case '2.1':     
+                        reply(".update AUTO_VOICE:true");
+                        break;
+                    case '2.2':     
+                        reply(".update AUTO_VOICE:false");
+                    break;
+                    case '3.1':    
+                        reply(".update AUTO_READ_STATUS:true");
+                    break;
+                    case '3.2':    
+                        reply(".update AUTO_READ_STATUS:false");
+                    break;                    
+                    case '4.1':    
+                        reply(".update AUTO_STICKER:true");
+                    break;
+                    case '4.2':    
+                        reply(".update AUTO_STICKER:false");
+                    break;                                        
+                    case '5.1':    
+                        reply(".update AUTO_REPLY:true");
+                    break;
+                    case '5.2':    
+                        reply(".update AUTO_REPLY:false");
+                    break;                        
+                    case '6.1':    
+                        reply(".update ALLWAYS_OFFLINE:true");
+                    break; 
+                    case '6.2':    
+                        reply(".update ALLWAYS_OFFLINE:false");
+                    break;                       
+                    case '7.1':    
+                        reply(".update READ_MESSAGE:true");
+                    break;
+                    case '7.2':    
+                        reply(".update READ_MESSAGE:false");
+                    break;
+                    case '8.1':    
+                        reply(".update AUTO_REACT:true");
+                    break;
+                    case '8.2':    
+                        reply(".update AUTO_REACT:false");
+                    break;
+                    case '9.1':    
+                        reply(".update ANTI_LINK:true");
+                    break;
+                    case '9.2':   
+                        reply(".update ANTI_LINK:false");
+                    break;
+                    case '9.3':    
+                        reply(".update ANTI_LINK:false");
+                        reply(".update ANTI_LINKK:false");
+                    break;
+                    case '10.1':
+                        reply(".update AUTO_REACT_STATUS:true");
+                    break;
+                    case '10.2':
+                        reply(".update AUTO_REACT_STATUS:fales");
+                    break;
+                    case '10.3':
+                        reply(".update AUTO_STATUS_REPLY:true");
+                    break;
+                    case '10.4':
+                        reply(".update AUTO_STATUS_REPLY:fales");
+                    break;
+                    case '11.1':
+                        reply(".ANTI_BAD:true");
+                    break;
+                     case '11.2':
+                        reply(".ANTI_BAD:fales");
+                    break;
+
+                    default:
+                        reply("Invalid option. Please select a valid option🔴");
+                }
+
+            }
+        });
+
+    } catch (e) {
+        console.error(e);
+        await conn.sendMessage(from, { react: { text: '❌', key: mek.key } })
+        reply('An error occurred while processing your request.');
+    }
+});
