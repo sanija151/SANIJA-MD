@@ -4,6 +4,7 @@ const { getBuffer, getGroupAdmins, getRandom, h2k, isUrl, Json, runtime, sleep, 
 
 cmd({
   pattern: "forward",
+  alias: ["f"],
   desc: "forward msgs",
   alias: ["fo"],
   category: "main",
