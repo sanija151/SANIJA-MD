@@ -14,7 +14,7 @@ const BOT_NAME = "SANIJA MD";
 const activeMovieDownloads = new Map(); // to track replies
 
 cmd({
-    pattern: "movie",
+    pattern: "sinhalasub",
     alias: ["moviedl", "films"],
     react: '🎬', // main react emoji on command usage
     category: "download",
