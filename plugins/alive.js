@@ -1,4 +1,4 @@
-const config = require("../settings");
+const config = require("../config");
 const os = require('os');
 const fs = require('fs');
 const si = require("systeminformation");
