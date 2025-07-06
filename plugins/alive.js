@@ -35,12 +35,12 @@ async (conn, mek, m, { from, reply }) => {
                 footer: '© 2025 SANIJA MD',
                 buttons: [
                     {
-                        buttonId: 'system',
-                        buttonText: { displayText: 'System 📟' },
+                        buttonId: '.menu',
+                        buttonText: { displayText: 'menu 📟' },
                         type: 1
                     },
                     {
-                        buttonId: 'ping',
+                        buttonId: '.ping',
                         buttonText: { displayText: 'Ping 📍' },
                         type: 1
                     }
