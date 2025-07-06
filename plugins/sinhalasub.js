@@ -10,8 +10,8 @@ const DOWNLOAD_URL = "https://api.skymansion.site/movies-dl/download";
 const API_KEY = config.MOVIE_API_KEY;
 
 cmd({
-    pattern: "movie",
-    alias: ["moviedl", "films"],
+    pattern: "sinhalasub",
+    alias: ["sinsub", "sinmv"],
     react: '🎬',
     category: "download",
     desc: "Search and download movies from PixelDrain",
