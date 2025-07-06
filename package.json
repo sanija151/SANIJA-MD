@@ -22,6 +22,7 @@
     "pm2": "^5.2.0",
     "util": "^0.12.4",
     "express": "latest",
+    "discord-xp": "1.1.16",
     "axios": "^1.2.5",
     "crypto-digest-sync": "^1.0.0",
     "crypto-js": "latest",
