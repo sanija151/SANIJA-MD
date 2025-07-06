@@ -9,95 +9,52 @@ const API_URL = "https://api.skymansion.site/movies-dl/search";
 const DOWNLOAD_URL = "https://api.skymansion.site/movies-dl/download";
 const API_KEY = config.MOVIE_API_KEY;
 
-const BOT_NAME = "SANIJA MD";
-
-const activeMovieDownloads = new Map(); // to track replies
-
 cmd({
-    pattern: "sinhalasub",
+    pattern: "movie",
     alias: ["moviedl", "films"],
-    react: '🎬', // main react emoji on command usage
+    react: '🎬',
     category: "download",
-    desc: `Search and download movies from PixelDrain with quality selector using ${BOT_NAME}`,
+    desc: "Search and download movies from PixelDrain",
     filename: __filename
 }, async (robin, m, mek, { from, q, reply }) => {
     try {
-        if (!q || q.trim() === '') return await reply(`❌ [${BOT_NAME}] Please provide a movie name!\n\nExample: \`.movie Deadpool\``);
+        if (!q || q.trim() === '') return await reply('❌ Please provide a movie name! (e.g., Deadpool)');
 
-        await reply(`🔎 [${BOT_NAME}] Searching for movie: *${q.trim()}*... Please wait.`);
-
-        // Search movie
+        // Fetch movie search results
         const searchUrl = `${API_URL}?q=${encodeURIComponent(q)}&api_key=${API_KEY}`;
-        const res = await fetchJson(searchUrl);
+        let response = await fetchJson(searchUrl);
 
-        if (!res || !res.SearchResult || !res.SearchResult.result.length)
-            return await reply(`❌ [${BOT_NAME}] No results found for *${q}*.`);
+        if (!response || !response.SearchResult || !response.SearchResult.result.length) {
+            return await reply(`❌ No results found for: *${q}*`);
+        }
 
-        const movie = res.SearchResult.result[0];
-        const detailsUrl = `${DOWNLOAD_URL}/?id=${movie.id}&api_key=${API_KEY}`;
-        const detailsRes = await fetchJson(detailsUrl);
+        const selectedMovie = response.SearchResult.result[0]; // Select first result
+        const detailsUrl = `${DOWNLOAD_URL}/?id=${selectedMovie.id}&api_key=${API_KEY}`;
+        let detailsResponse = await fetchJson(detailsUrl);
 
-        if (!detailsRes || !detailsRes.downloadLinks || !detailsRes.downloadLinks.result.links.driveLinks.length)
-            return await reply(`❌ [${BOT_NAME}] No PixelDrain download links found.`);
+        if (!detailsResponse || !detailsResponse.downloadLinks || !detailsResponse.downloadLinks.result.links.driveLinks.length) {
+            return await reply('❌ No PixelDrain download links found.');
+        }
 
-        const info = detailsRes.details;
-        const links = detailsRes.downloadLinks.result.links.driveLinks;
+        // Select the 720p PixelDrain link
+        const pixelDrainLinks = detailsResponse.downloadLinks.result.links.driveLinks;
+        const selectedDownload = pixelDrainLinks.find(link => link.quality === "SD 480p");
+        
+        if (!selectedDownload || !selectedDownload.link.startsWith('http')) {
+            return await reply('❌ No valid 480p PixelDrain link available.');
+        }
 
-        let msg = `🎬 *${movie.title}*\n`;
-        if (info.year) msg += `🗓 Year: ${info.year}\n`;
-        if (info.duration) msg += `⏱ Duration: ${info.duration}\n`;
-        if (info.rating) msg += `⭐ Rating: ${info.rating}\n`;
-        if (info.description) msg += `📝 Description: ${info.description}\n`;
-        msg += `\n📥 *Available Qualities:*\n`;
-
-        links.forEach((link, index) => {
-            msg += `\n${index + 1}. ${link.quality}`;
-        });
-
-        msg += `\n\n📌 *Reply with the number to download.*\n\n⚠️ *Note: Large files may take time to download and send.*`;
-
-        await reply(msg);
-
-        // Track user's download request for reply
-        activeMovieDownloads.set(mek.key.id, {
-            from,
-            movie,
-            links,
-            quoted: mek
-        });
-
-    } catch (error) {
-        console.error(`[${BOT_NAME}] Movie command error:`, error);
-        await reply(`❌ [${BOT_NAME}] Something went wrong. Please try again later.`);
-    }
-});
-
-// Handle quality reply
-cmd({
-    on: "text"
-}, async (robin, m, mek, { from, reply }) => {
-    const previous = activeMovieDownloads.get(mek.message?.extendedTextMessage?.contextInfo?.stanzaId);
-    if (!previous) return;
-
-    const choice = parseInt(m.text.trim());
-    if (isNaN(choice) || choice < 1 || choice > previous.links.length)
-        return await reply(`❌ [${BOT_NAME}] Invalid choice. Please enter a valid number.`);
-
-    const selected = previous.links[choice - 1];
-    if (!selected || !selected.link) return await reply(`❌ [${BOT_NAME}] Selected link not found.`);
-
-    const fileId = selected.link.split('/').pop();
-    const directLink = `https://pixeldrain.com/api/file/${fileId}?download`;
-
-    const fileName = `${previous.movie.title.replace(/[\/:*?"<>|]/g, '')}-${selected.quality}.mp4`;
-    const filePath = path.join(__dirname, fileName);
-
-    try {
-        await reply(`⬇️ [${BOT_NAME}] Downloading *${previous.movie.title}* in *${selected.quality}* quality. Please wait...`);
-
+        // Convert to direct download link
+        const fileId = selectedDownload.link.split('/').pop();
+        const directDownloadLink = `https://pixeldrain.com/api/file/${fileId}?download`;
+        
+        
+        // Download movie
+        const filePath = path.join(__dirname, `${selectedMovie.title}-480p.mp4`);
         const writer = fs.createWriteStream(filePath);
+        
         const { data } = await axios({
-            url: directLink,
+            url: directDownloadLink,
             method: 'GET',
             responseType: 'stream'
         });
@@ -108,21 +65,19 @@ cmd({
             await robin.sendMessage(from, {
                 document: fs.readFileSync(filePath),
                 mimetype: 'video/mp4',
-                fileName,
-                caption: `🎬 [${BOT_NAME}] *${previous.movie.title}*\n📥 Quality: ${selected.quality}\n✅ Download Complete! Enjoy your movie! 🍿`,
-                quoted: previous.quoted
+                fileName: `${selectedMovie.title}-480p.mp4`,
+                caption: `🎬 *${selectedMovie.title}*\n📌 Quality: 480p\n✅ *Download Complete!*\n📌 POWERED BY SANIJA MD`,
+                quoted: mek 
             });
             fs.unlinkSync(filePath);
         });
 
         writer.on('error', async (err) => {
-            console.error(`[${BOT_NAME}] Download stream error:`, err);
-            await reply(`❌ [${BOT_NAME}] Failed to download the movie. Please try again later.`);
+            console.error('Download Error:', err);
+            await reply('❌ Failed to download movie. Please try again.');
         });
-
-        activeMovieDownloads.delete(mek.key.id);
-    } catch (err) {
-        console.error(`[${BOT_NAME}] Download error:`, err);
-        await reply(`❌ [${BOT_NAME}] Download failed. Please try again.`);
+    } catch (error) {
+        console.error('Error in movie command:', error);
+        await reply('❌ Sorry, something went wrong. Please try again later.');
     }
 });
