@@ -4,7 +4,7 @@ const fs = require("fs");
 const {
   runtime
 } = require("../lib/functions");
-const { cmd } = require("../lib/command");
+const { cmd } = require("../command");
 
 cmd({
   pattern: "alive",
