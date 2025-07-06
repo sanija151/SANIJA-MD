@@ -101,7 +101,7 @@ async function fetchAudioData(url, format = "mp3", retries = 2) {
   }
 
   try {
-    const apiUrl = `https://chathuraytdl.netlify.app/ytdl?url=${encodeURIComponent(url)}&format=mp3`;
+    const apiUrl = `https://bk9.fun/download/ytmp3?url=${encodeURIComponent(url)}&type=mp3`;
     console.log(`Fetching from API: ${apiUrl}`);
     const response = await axios.get(apiUrl, {
       timeout: 15000,
