@@ -29,22 +29,26 @@ cmd({
 *╰───────────────●●►*`;
 
         if (config.BUTTON === true) {
-            await conn.sendMessage(from, {
-                image: { url: "https://files.catbox.moe/uhn8p1.png" },
-                caption: intro + `
+            const sections = [{
+                title: "📂 SELECT A MENU CATEGORY",
+                rows: [
+                    { title: "1 • MAIN", rowId: "menu main", description: "Core bot commands" },
+                    { title: "2 • SEARCH", rowId: "menu search", description: "Search-related commands" },
+                    { title: "3 • DOWNLOAD", rowId: "menu download", description: "Download media and files" },
+                    { title: "4 • GROUP", rowId: "menu group", description: "Group admin tools" },
+                    { title: "5 • OWNER", rowId: "menu owner", description: "Owner exclusive commands" },
+                    { title: "6 • FUN", rowId: "menu fun", description: "Games and fun features" }
+                ]
+            }];
 
-🌟 *Select a category below*`,
+            await conn.sendMessage(from, {
+                text: intro + "\n\n🌟 *Select a menu category below*",
                 footer: "POWERED BY SANIJA-MD",
-                buttons: [
-                    { buttonId: "menu main", buttonText: { displayText: "1 • MAIN" }, type: 1 },
-                    { buttonId: "menu search", buttonText: { displayText: "2 • SEARCH" }, type: 1 },
-                    { buttonId: "menu download", buttonText: { displayText: "3 • DOWNLOAD" }, type: 1 },
-                    { buttonId: "menu group", buttonText: { displayText: "4 • GROUP" }, type: 1 },
-                    { buttonId: "menu owner", buttonText: { displayText: "5 • OWNER" }, type: 1 },
-                    { buttonId: "menu fun", buttonText: { displayText: "6 • FUN" }, type: 1 }
-                ],
-                headerType: 4
+                title: "📜 SANIJA-MD COMMAND MENU",
+                buttonText: "Tap to View Options",
+                sections
             }, { quoted: mek });
+
         } else {
             const desc = intro + `
 
