@@ -1,3 +1,4 @@
+// ✅ Main .menu command with button/non-button mode
 const { readEnv } = require('../config');
 const config = require('../config');
 const { cmd } = require('../command');
@@ -19,7 +20,7 @@ cmd({
         const totalRam = Math.round(os.totalmem() / 1024 / 1024);
         const host = os.hostname();
 
-        const intro = `*👋 Hello ${pushname}*
+        const intro = `*👋 Hello ${pushname}*,
 
 *╭─「SANIJA-MD-V1」*
 *│◈ Runtime:* ${uptime}
@@ -32,12 +33,12 @@ cmd({
             const sections = [{
                 title: "📂 SELECT A MENU CATEGORY",
                 rows: [
-                    { title: "1 • MAIN", rowId: "menu main", description: "Core bot commands" },
-                    { title: "2 • SEARCH", rowId: "menu search", description: "Search-related commands" },
-                    { title: "3 • DOWNLOAD", rowId: "menu download", description: "Download media and files" },
-                    { title: "4 • GROUP", rowId: "menu group", description: "Group admin tools" },
-                    { title: "5 • OWNER", rowId: "menu owner", description: "Owner exclusive commands" },
-                    { title: "6 • FUN", rowId: "menu fun", description: "Games and fun features" }
+                    { title: "1 • MAIN", rowId: "maincmd" },
+                    { title: "2 • SEARCH", rowId: "searchcmd" },
+                    { title: "3 • DOWNLOAD", rowId: "downcmd" },
+                    { title: "4 • GROUP", rowId: "groupcmd" },
+                    { title: "5 • OWNER", rowId: "ownercmd" },
+                    { title: "6 • FUN", rowId: "funcmd" }
                 ]
             }];
 
@@ -83,31 +84,20 @@ _🌟 Reply with the number to view that category._
                 if (context?.stanzaId !== msg.key.id) return;
                 isHandled = true;
 
-                const sendCategory = (category, commandsList) => {
-                    reply(`╔════════════════╗\n║ ${category} ║\n╚════════════════╝\n${commandsList}\n\n> 💡 *POWERED BY SANIJA-MD*`);
+                const menuMap = {
+                    '1': 'maincmd',
+                    '2': 'searchcmd',
+                    '3': 'downcmd',
+                    '4': 'groupcmd',
+                    '5': 'ownercmd',
+                    '6': 'funcmd'
                 };
 
-                switch (selected) {
-                    case '1':
-                        sendCategory("🔧 MAIN COMMANDS", "◈ alive\n◈ menu\n◈ menu2\n◈ system\n◈ ping\n◈ runtime\n◈ jid\n📊 Total: 7");
-                        break;
-                    case '2':
-                        sendCategory("🔍 SEARCH COMMANDS", "◈ yts\n◈ image\n📊 Total: 2");
-                        break;
-                    case '3':
-                        sendCategory("📥 DOWNLOAD COMMANDS", "◈ apk\n◈ twitter\n◈ gdrive\n◈ mediafire\n◈ fb\n◈ play\n◈ play2\n◈ video\n◈ video2\n◈ yta\n◈ tiktok\n◈ ytmp3\n📊 Total: 12");
-                        break;
-                    case '4':
-                        sendCategory("👥 GROUP COMMANDS", "◈ mute\n◈ unmute\n◈ promote\n◈ demote\n◈ del\n◈ add\n◈ admins\n◈ groupdesc\n◈ groupinfo\n◈ gname\n◈ setsubject\n◈ tagall\n◈ hidetag\n◈ unlock\n◈ lock\n◈ join\n◈ leave\n◈ invite\n◈ tagadmin\n📊 Total: 20");
-                        break;
-                    case '5':
-                        sendCategory("👑 OWNER COMMANDS", "◈ shutdown\n◈ alive\n◈ ping\n◈ clearchats\n◈ block\n◈ unblock\n◈ repo\n◈ owner\n◈ owner2\n📊 Total: 9");
-                        break;
-                    case '6':
-                        sendCategory("🎮 FUN COMMANDS", "◈ joke\n◈ flirt\n◈ truth\n◈ dare\n◈ fact\n◈ pickupline\n◈ character\n◈ repeat\n◈ spam\n◈ readmore\n📊 Total: 10");
-                        break;
-                    default:
-                        reply("❌ Invalid option. Please enter a number between 1 and 6.");
+                const selectedKey = menuMap[selected];
+                if (selectedKey) {
+                    await conn.sendMessage(from, { text: `.${selectedKey}` }, { quoted: mek });
+                } else {
+                    reply("❌ Invalid option. Please enter a number between 1 and 6.");
                 }
 
                 conn.ev.off('messages.upsert', handler);
@@ -121,4 +111,100 @@ _🌟 Reply with the number to view that category._
         await conn.sendMessage(from, { react: { text: '❌', key: mek.key } });
         reply('⚠️ An error occurred while showing the menu.');
     }
+});
+
+
+// ===============================
+// 🔧 Individual .<category>cmd Commands
+// ===============================
+
+const { cmd: subCmd } = require('../command');
+
+subCmd({ pattern: "maincmd", desc: "Main command list", category: "main" }, async (_c, _m, m, { reply }) => {
+    reply(`🔧 *MAIN COMMANDS*
+◈ alive
+◈ menu
+◈ menu2
+◈ system
+◈ ping
+◈ runtime
+◈ jid
+📊 Total: 7`);
+});
+
+subCmd({ pattern: "searchcmd", desc: "Search commands", category: "main" }, async (_c, _m, m, { reply }) => {
+    reply(`🔍 *SEARCH COMMANDS*
+◈ yts
+◈ image
+📊 Total: 2`);
+});
+
+subCmd({ pattern: "downcmd", desc: "Download commands", category: "main" }, async (_c, _m, m, { reply }) => {
+    reply(`📥 *DOWNLOAD COMMANDS*
+◈ apk
+◈ twitter
+◈ gdrive
+◈ mediafire
+◈ fb
+◈ play
+◈ play2
+◈ video
+◈ video2
+◈ yta
+◈ tiktok
+◈ ytmp3
+📊 Total: 12`);
+});
+
+subCmd({ pattern: "groupcmd", desc: "Group commands", category: "main" }, async (_c, _m, m, { reply }) => {
+    reply(`👥 *GROUP COMMANDS*
+◈ mute
+◈ unmute
+◈ promote
+◈ demote
+◈ del
+◈ add
+◈ admins
+◈ groupdesc
+◈ groupinfo
+◈ gname
+◈ setsubject
+◈ tagall
+◈ hidetag
+◈ unlock
+◈ lock
+◈ join
+◈ leave
+◈ invite
+◈ tagadmin
+📊 Total: 20`);
+});
+
+subCmd({ pattern: "ownercmd", desc: "Owner commands", category: "main" }, async (_c, _m, m, { reply }) => {
+    reply(`👑 *OWNER COMMANDS*
+◈ shutdown
+◈ alive
+◈ ping
+◈ clearchats
+◈ block
+◈ unblock
+◈ repo
+◈ owner
+◈ owner2
+📊 Total: 9`);
+});
+
+subCmd({ pattern: "funcmd", desc: "Fun commands", category: "main" }, async (_c, _m, m, { reply }) => {
+    reply(`🎮 *FUN COMMANDS*
+◈ joke
+◈ flirt
+◈ truth
+◈ dare
+◈ fact
+◈ pickupline
+◈ character
+◈ repeat
+◈ spam
+◈ readmore
+📊 Total: 10`);
 });
