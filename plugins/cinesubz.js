@@ -58,12 +58,12 @@ if (movs.result.data.length < 1) return await reply(not_fo)
 	
 	                mov.forEach((movie, index) => {
 				
-		  if(movie.type == 'TV' ) ty = 'citvjid '
-                  if(movie.type == 'Movie' ) ty = 'cimvjid ' 
+		  if(data.type == 'TV' ) ty = 'citvjid '
+                  if(data.type == 'Movie' ) ty = 'cimvjid ' 
 				
-                  cot += ` *${formatNumber( index + 1)} ||* ${movie.title.replace(/Sinhala Subtitles \| සිංහල උපසිරැසි සමඟ/g , '').replace('Sinhala Subtitle | සිංහල උපසිරැසි සමඟ' , '')} | ${movie.type}\n\n`
+                  cot += ` *${formatNumber( index + 1)} ||* ${data.title.replace(/Sinhala Subtitles \| සිංහල උපසිරැසි සමඟ/g , '').replace('Sinhala Subtitle | සිංහල උපසිරැසි සමඟ' , '')} | ${data.type}\n\n`
 				
-                  numrep.push(`${prefix}${ty} ${movie.link}` )
+                  numrep.push(`${prefix}${ty} ${data.link}` )
                   })	      
   
 	
@@ -110,9 +110,11 @@ var cast = ''
 let cot = `🎬 *𝖲𝖠𝖭𝖨𝖩𝖠 𝖬𝖣 𝖢𝖨𝖭𝖤𝖲𝖴𝖡𝖹 𝖬𝖮𝖵𝖨𝖤 𝖣𝖮𝖶𝖭𝖫𝖮𝖠𝖣𝖤𝖱* 🎬
 
 
-   📽️ Movie Name: ${mov.title}
-   🍟 Release Date: ${mov.date}
-   ⏱ Duration: ${mov.duration}
+   📽️ Movie Name: ${mainDetails.maintitle}
+   🍟 Release Date: ${mainDetails.dateCreated}
+   🌎 𝗖ᴏᴜɴᴛʀʏ: ${mainDetails.country}
+   ⏱ Duration: ${mainDetails.runtime}
+   🔗 Description: ${mainDetails.description}
    🖇️ Movie Link: ${q}
 
 ▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
@@ -180,14 +182,14 @@ let mov = move.result.data
 let cot = `🎬 *𝖲𝖠𝖭𝖨𝖩𝖠 𝖬𝖣 𝖢𝖨𝖭𝖤𝖲𝖴𝖡𝖹 𝖬𝖮𝖵𝖨𝖤 𝖣𝖮𝖶𝖭𝖫𝖮𝖠𝖣𝖤𝖱* 🎬
 
 
-  📽️ Movie Name: ${mov.title}
-  🍟 Release Date: ${mov.date}   
-  🌍 Country: ${mov.country}
-  ⏱ Duration: ${mov.duration}  
+  📽️ Movie Name: ${mainDetails.maintitle}
+  🍟 Release Date: ${mainDetails.dateCreated}   
+  🌍 Country: ${mainDetails.country}
+  ⏱ Duration: ${mainDetails.runtime}  
   🖇️ Movie Link: ${inp}   
-  🎀 Category: ${mov.category}
-  ⭐ ImdbRate: ${mov.imdbRate}   
-  🤵 Director: ${mov.director}
+  🎀 Category: ${mainDetails.genres}
+  ⭐ ImdbRate: ${movieData.imdbRating}   
+  🤵 Director: ${movieData.director}
 
 ▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 
@@ -202,11 +204,11 @@ numrep.push(`${prefix}cimvdet ${q}`)
 numrep.push(`${prefix}cineimages ${q}`) 	
 	
 
-		                mov.dl_links.forEach((movie, index) => {
+		                dllinks.directDownloadLinks.forEach((movie, index) => {
 				
-                  cot += `*${formatNumber( index + 3 )} ||* ${movie.quality} [ ${movie.size} ]\n`
+                  cot += `*${formatNumber( index + 3 )} ||* ${dllinks.quality} [ ${dllinks.size} ]\n`
 				
-                  numrep.push(`${prefix}cinedirectdl ${movie.link}🎈${mov.title}🎈${movie.quality}🎈${movie.size}🎈${jidx}🎈${mov.mainImage}` )
+                  numrep.push(`${prefix}cinedirectdl ${mainDetails.link}🎈${mainDetails.maintitle}🎈${dllinks.quality}🎈${dllinks.size}🎈${jidx}🎈${mainDetails.imageUrl}` )
                   })
                  
 
@@ -248,9 +250,8 @@ let mov = move.result.data
 let cot = `📺 *𝖲𝖠𝖭𝖨𝖩𝖠 𝖬𝖣 𝖳𝖵 𝖲𝖧𝖮𝖶 𝖣𝖮𝖶𝖭𝖫𝖮𝖠𝖣𝖤𝖱* 📺
 
 
-  📽 Tv Show Name: ${mov.title}
-  ✨ First Air Date: ${mov.first_air_date}
-  🎐 Last Air Date: ${mov.last_air_date}
+  📽 Tv Show Name: ${mainDetails.maintitle}
+  ✨ First Air Date: ${mainDetails.dateCreated}
   🖇️ Tv Show Link: ${q}
 
 ▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
@@ -312,19 +313,18 @@ const sudoNumber = config.SUDO;
 if(!inp) return await reply(err)
     if (!q.includes('cinesubz.co/tvshow')) return await reply(valid_url)
   
-const move = await fetchApi(`${apilink}/movie/cinesubz/episode?url=${inp}`)
+const move = await fetchApi(`${apilink}/movie/cinesubz/tvshow?url=${inp}`)
 let mov = move.result.data
 
 let cot = `📺 *𝖲𝖠𝖭𝖨𝖩𝖠 𝖬𝖣 𝖳𝖵 𝖲𝖧𝖮𝖶 𝖣𝖮𝖶𝖭𝖫𝖮𝖠𝖣𝖤𝖱* 📺
 
 
-  📽 Tv Show Name: ${mov.title}
-  ✨ First Air Date: ${mov.first_air_date}
-  🎐 Last Air Date: ${mov.last_air_date}
+  📽 Tv Show Name: ${mainDetails.maintitle}
+  ✨ First Air Date: ${mainDetails.dateCreated}
   🖇️ Tv Show Link: ${inp}
-  🎀 Categories: ${mov.category}
-  ⭐ TMDB RATIN: ${mov.tmdbRate}
-  🎡 Episode Count: ${mov.episode_count}
+  🎀 Categories: ${mainDetails.genres}
+  ⭐ TMDB RATIN: ${mainDetails.rating.value}
+  🎡 Episode Count: ${mainDetails.count}
 
 ▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 
@@ -390,9 +390,9 @@ let mov = move.result.data
 let cot = `📺 *𝖲𝖠𝖭𝖨𝖩𝖠 𝖬𝖣 𝖳𝖵 𝖲𝖧𝖮𝖶 𝖣𝖮𝖶𝖭𝖫𝖮𝖠𝖣𝖤𝖱* 📺
 
 
-  📽 Episode Name: ${mov.episode_name}
+  📽 Episode Name: ${mainDetails.mainDetails}
   🖇️ Tv Show Link: ${inp}
-  🧿 Release Date : ${mov.date}
+  🧿 Views : ${mainDetails.views}
   
 ▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 
@@ -407,11 +407,11 @@ numrep.push(`${prefix}ciepdet ${q}`)
 numrep.push(`${prefix}cineimages ${q}`)
 
 	
-		                mov.dl_links.forEach((movie, index) => {
+		                data.dl_links.forEach((movie, index) => {
 				
                   cot += `*${formatNumber( index + 3)} ||* ${movie.quality} [ ${movie.size} ]\n`
 				
-                  numrep.push(`${prefix}cinedirectdl ${movie.link}🎈${mov.title}🎈${movie.quality}🎈${movie.size}🎈${jidx}` )
+                  numrep.push(`${prefix}cinedirectdl ${movie.link}🎈${mov.title}🎈${dllinks.directDownloadLinks.quality}🎈${dllinks.directDownloadLinks.size}🎈${jidx}` )
                   })
                  
 
@@ -458,20 +458,20 @@ if(!q) return await reply(url)
 				if (text.includes('🎈')) { inp = text.split('🎈')[0]}   
 
 
-const anu = await fetchApi(`${apilink}//movie/cinesubz/movie?url=${inp}`)
+const anu = await fetchApi(`${apilink}/movie/cinesubz/movie?url=${inp}`)
 let mov = anu.result.data	
 var cast = ''
       for (let i of mov.cast ){ 
   cast += i.name + ','
 	  }
-const name = mov.title
-const date = mov.date
-const country = mov.country
-const runtime = mov.duration
-const cat = mov.category
-const imdbrate = mov.imdbRate
-const imdbvote = mov.imdbVoteCount
-const director = mov.director
+const name = data.mainDetails.maintitle
+const date = data.mainDetails.dateCreated
+const country = data.mainDetails.country
+const runtime = data.mainDetails.runtime
+const cat = data.mainDetails.genres
+const imdbrate = data.movieData.imdbRating
+const imdbvote = data.mainDetails.rating.count
+const director = data.movieData.director
 	
 let yt = `
 🍟 _*${name}*_
@@ -550,18 +550,17 @@ if(!q) return await reply(url)
 				if (text.includes('🎈')) { inp = text.split('🎈')[0]}   
 
 	
-const anu = await fetchApi(`${apilink}/movie/cinesubz/episode?url=${inp}`)
+const anu = await fetchApi(`${apilink}/movie/cinesubz/tvshow?url=${inp}`)
 let mov = anu.result.data	
 
 
   
 let yt = `
-📺 *Tv Show Name:* ${mov.title}
-✨ *First Air Date:* ${mov.first_air_date}
-🎐 *Last Air Date:* ${mov.last_air_date}
-🎀 *Categories:* ${mov.category}
-⭐ *TMDB RATIN:* ${mov.tmdbRate}
-🔮 *TMDB COUNT:* ${mov.tmdbVoteCount}
+📺 *Tv Show Name:* ${data.mainDetails.maintitle}
+✨ *First Air Date:* ${data.mainDetails.dateCreated}
+🎀 *Categories:* ${data.mainDetails.genres}
+⭐ *TMDB RATIN:* ${data.mainDetails.rating.value}
+🔮 *TMDB COUNT:* ${data.mainDetails.rating.count}
 🎡 *Episode Count:* ${mov.episode_count}
 
 POWERED BY SANIJA MD
@@ -573,9 +572,9 @@ POWERED BY SANIJA MD
 
 `
 const jid = jidx || from
-const movImg = mov.mainImage.replace("fit=", "fit")
+const movImg = data.mainDetails.imageUrl.replace("fit=", "fit")
 	
-await conn.sendMessage(jid ,  { image : { url : movImg || mov.image || '' } , caption : yt + `${config.CAPTION}`})
+await conn.sendMessage(jid ,  { image : { url : movImg || data.mainDetails.imageUrl || '' } , caption : yt + `${config.CAPTION}`})
 
 
 if (jidx === from) { 
@@ -626,16 +625,16 @@ let mov = anu.result.data
 
   
 let yt = `
-📺 *Episode Name:* ${mov.episode_name}
+📺 *Episode Name:* ${data.mainDetails.episodeTitle}
 
 🖇️ *Tv Show Link:* ${inp}
 
-🧿 *Release Date :* ${mov.date}
+🧿 *Views:* ${data.mainDetails.views}
 `
 	
 const jid = jidx || from
 
-await conn.sendMessage(jid ,  { image : { url : mov.images[0] || "" } , caption : yt + `
+await conn.sendMessage(jid ,  { image : { url : data.mainDetails.imageUrl[0] || "" } , caption : yt + `
 
 
 ${config.CAPTION}`})
@@ -698,9 +697,9 @@ if (!inp) return await conn.sendMessage(from, { text: "*An error occurred 🧑�
 const anu = await fetchApi(`${apilink}/movie/cinesubz/dl?url=${inp}`)
 
 	
-	if(anu.result.gdrive) {
+	if(data.type.gdrive) {
 	
-const dlk = anu.result.gdrive
+const dlk = data.type.gdrive
 const dl_link = dlk.replace("https://drive.usercontent.google.com/", "https://drive.google.com/")
 const up_mg = await conn.sendMessage(from, { text : 'Uploading Your Request MOVIE..⬆' }, {quoted: mek})
 		
