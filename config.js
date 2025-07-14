@@ -32,7 +32,8 @@
  BUTTON: process.env.BUTTON || "true",
  MOVIE_API_KEY: process.env.MOVIE_API_KEY || "sky|be538a46034c192460b9ac614a00d705c7fbd7cb",
  MONGODB: process.env.MONDODB || "mongodb+srv://rafama4631:fXX1CtlsNX8lONRc@manudb.oygo33i.mongodb.net",
- CAPTION: process.env.CAPTION || "SANIJA MD",
- JIDS: process.env.JIDS || [120363401116280569@g.us],
- SUDO: process.env.SUDO || ['94711451319','94779483535','94724481155']
+CAPTION: process.env.CAPTION || "SANIJA MD",
+JIDS: process.env.JIDS ? process.env.JIDS.split(',') : ["120363401116280569@g.us"],
+SUDO: process.env.SUDO ? process.env.SUDO.split(',') : ['94711451319', '94779483535', '94724481155'],
+
  };
