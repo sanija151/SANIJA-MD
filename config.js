@@ -5,7 +5,7 @@
      return text === fault ? true : false;
  }
  module.exports = {
- SESSION_ID: process.env.SESSION_ID || "SANIJA-MD=eZsWjJIK#ELr4cum54rNlmZQaCbX-1lSESUfB6i3Jta00iVLumF4", //ADD YOUR SESSION ID HERE
+ SESSION_ID: process.env.SESSION_ID || "SANIJA-MD=OBUFAJYC#g68lajc8Z6yE5BGVPTpYiq01cWqNJd4Btejb0nknCHs", //ADD YOUR SESSION ID HERE
  AUTO_READ_STATUS: process.env.AUTO_READ_STATUS || "true",
  MODE: process.env.MODE || "private",
  AUTO_VOICE: process.env.AUTO_VOICE || "true",
