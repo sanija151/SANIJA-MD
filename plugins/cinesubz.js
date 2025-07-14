@@ -43,9 +43,9 @@ if(!q) return await reply(giveme)
 	
 const movs = await fetchApi(`${apilink}/movie/cinesubz/search?q=${q}`)
 var ty = ''
-let mov = movs.result.data
+let mov = movs.data.data
 let numrep = []
-if (movs.result.data.length < 1) return await reply(not_fo)
+if (movs.data.data.datalength < 1) return await reply(not_fo)
 
 		
               let cot = `🔮 *𝖲𝖠𝖭𝖨𝖩𝖠 𝖬𝖣 𝖢𝖨𝖭𝖤𝖲𝖴𝖡𝖹 𝖬𝖮𝖵𝖨𝖤 𝖲𝖤𝖠𝖱𝖢𝖧* 🔮
