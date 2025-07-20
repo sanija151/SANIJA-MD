@@ -29,7 +29,7 @@
  START_IMG: process.env.START_IMG || "https://files.catbox.moe/v02why.jpg",
  LOGO: process.env.LOGO || "https://files.catbox.moe/v02why.jpg",
  FOOTER: process.env.FOOTER || "SANIJA MD",
- BUTTON: process.env.BUTTON || "true",
+ BUTTON: process.env.BUTTON || "false",
  MOVIE_API_KEY: process.env.MOVIE_API_KEY || "sky|be538a46034c192460b9ac614a00d705c7fbd7cb",
  MONGODB: process.env.MONDODB || "mongodb+srv://rafama4631:fXX1CtlsNX8lONRc@manudb.oygo33i.mongodb.net",
 CAPTION: process.env.CAPTION || "SANIJA MD",
